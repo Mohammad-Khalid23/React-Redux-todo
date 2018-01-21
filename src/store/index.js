@@ -1,6 +1,6 @@
 import {createStore} from 'redux'
-import addTodo from './reducers/addTodo.js'
-let store = createStore(addTodo);
+import todoReducer from './reducers/todoReducer'
+let store = createStore(todoReducer);
 
 store.subscribe(()=>{
 

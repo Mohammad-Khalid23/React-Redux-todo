@@ -4,7 +4,7 @@ import './App.css';
 import TODO from '../component/todo.jsx'
 import { connect } from 'react-redux'
 import TodoAction from '../store/actions/todoAction.js'
-import addTodo from '../store/reducers/addTodo.js'
+import todoReducer from '../store/reducers/todoReducer'
 
 function mapStateToProps(state) {
   return {
@@ -23,6 +23,9 @@ function mapDispatchToProps(dispatch) {
     },
     allDelete: function () {
       dispatch(TodoAction.allDelete())
+    },
+    editTodo: function (value,index) {
+      dispatch(TodoAction._editTodo(value,index))
     }
   }
 }
@@ -39,17 +42,22 @@ class App extends Component {
   allDelete() {
     this.props.allDelete()
   }
+  editTodo(value,index){
+    console.log(value,"value in app js edit")
+    console.log(index," ind value in app js edit")
+    this.props.editTodo(value,index)
+  }
 
   render() {
 
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to my React Redux Todo </h2>
+          <h2>React Redux Todo by Khalid Ayub</h2>
         </div>
-        <p className="App-intro">
-          <TODO List={this.props.todoItem} todoValue={this.todoValue.bind(this)} allDelete={this.allDelete.bind(this)} delete={this.deleteTodo.bind(this)} />
-        </p>
+        <div className="App-intro">
+          <TODO List={this.props.todoItem} editTodo={this.editTodo.bind(this)} todoValue={this.todoValue.bind(this)} allDelete={this.allDelete.bind(this)} delete={this.deleteTodo.bind(this)} />
+        </div>
       </div>
     );
   }

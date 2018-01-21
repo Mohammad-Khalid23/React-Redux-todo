@@ -6,13 +6,22 @@ export default class TodoAction {
     static addTodo(value){
         return{
             type :  "ADD_TODO",
-            val : value
+            payload : value
+        }
+    }
+    static _editTodo(value,index){
+        return{
+            type :  "EDIT_TODO",
+            payload : {
+                value : value,
+                index :index
+            }
         }
     }
     static delTodo(index){
         return{
             type :  "DEL_TODO",
-            val : index
+            payload : index
 
         }
     }
